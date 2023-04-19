@@ -61,6 +61,7 @@ $ nest g service boards
 - 종속성으로 주입되는 NestJS의 기본 클래스(Service, Repository, Factory, Helper 등)를 의미한다.
 - 주입됨으로써 객체는 서로 다양한 관계를 만들 수 있으며, NestJS 런타임 시스템에 의해 객체의 인스턴스는 서로 연결된다.
   - (ex) Controller가 필요로 하는 다양한 기능들을 Controller 안에서 다 구현할 수 없다. 해당 기능들은 별개의 파일에서 구현한 다음, Controller에 `주입`함으로써 Controller가 기능을 사용할 수 있게 해 주는 것이다. 
+
 ## DTO(Data Transfer Object)
 
 
