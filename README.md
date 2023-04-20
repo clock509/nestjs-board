@@ -63,7 +63,12 @@ $ nest g service boards
   - (ex) Controller가 필요로 하는 다양한 기능들을 Controller 안에서 다 구현할 수 없다. 해당 기능들은 별개의 파일에서 구현한 다음, Controller에 `주입`함으로써 Controller가 기능을 사용할 수 있게 해 주는 것이다. 
 
 ## DTO(Data Transfer Object)
-
+- 계층 간 데이터 교환을 위한 객체로서, DB에서 데이터를 얻어 Service나 Controller 등으로 보낼 때 사용하는 객체.
+- 데이터가 네트워크를 통해 전송되는 방법을 정의하는 객체이다.
+- interface나 class를 이용해서 정의될 수 있다. 이 중에서도 class를 이용하는 것을 추천한다([공식문서 참조](https://docs.nestjs.com/controllers#request-payloads)).
+  - class: ES6 표준의 일부이므로, 자바스크립트 컴파일 시 실제 객체(entity)로 보존된다.
+  - interface: transpilation 과정에서 제거되므로, NestJS가 런타임에서 참조할 수 없게 된다. 
+- <b>데이터 유효성</b>을 체크하는 데 효율적이다.
 
 ## Pipes
 
