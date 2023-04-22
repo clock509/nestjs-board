@@ -11,6 +11,10 @@ export class BoardsService {
     return this.boards;
   }
 
+  getBoardById(id: string): Board {
+    return this.boards.find((board) => board.id === id);
+  }
+
   createBoard(createBoardDto: CreateBoardDto) {
     const { title, description } = createBoardDto;
     const board: Board = {
@@ -24,4 +28,13 @@ export class BoardsService {
     return board;
   }
 
+  deleteBoard(id: string): void { // 리턴값을 주지 않기로 한다면 void 타입으로 정의
+    this.boards = this.boards.filter((board) => board.id !== id);
+  }
+
+  updateBoardStatus(id: string, status: BoardStatus): Board {
+    const board = this.getBoardById(id);
+    board.status = status;
+    return board;
+  }
 }
