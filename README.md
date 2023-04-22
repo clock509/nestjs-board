@@ -71,7 +71,42 @@ $ nest g service boards
 - <b>데이터 유효성</b>을 체크하는 데 효율적이다.
 
 ## Pipes
+- Pipe는 `@Injectable()` 데코레이터로 주석이 달린 클래스이다.
+- 파이프는 `data transformation`과 `data validation`을 위해서 사용된다.
+  - `data transformation`: request의 입력 데이터를 원하는 형식으로 자동으로 변환한다(ex. 문자열 -> 정수)
+  - `data validation`: request의 입력 데이터를 평가하고, 유효성 체크를 하여 유효한 경우 변경되지 않은 상태로 전달하고, 그렇지 않으면 예외를 발생시킨다.
+- 컨트롤러 경로 처리기에 의해 처리되는 인수에 대해 작동한다.
+- Nest는 메소드가 호출되기 직전에 파이프를 삽입하고, 파이프는 메소드로 향하는 인수를 수신하고 이에 대해 작동한다.
 
+### Pipe가 작동하는 경우
+- Route handler가 처리하는 인수에 대해 작동
+- Pipe는 메소드 바로 직전에 작동해서, 메소드로 향하는 인수에 대해 변환할 것이 있으면 변환하고, 유효성 체크를 위해 호출되기도 한다. 
+
+### Pipe를 사용하는 방법(Binding pipes)
+1. Handler-level pipes
+   1. Route handler(=Controller)에서 `@UsePipes()` 데코레이터를 이용해서 할 수 있다.
+   2. 이 파이프는 <b>모든 파라미터</b>에 적용된다.
+2. Parameter-level pipes
+   1. <b>특정한 파라미터</b>에게만 적용이 되는 파이프이다.
+3. Global-level pipes
+   1. 클라이언트에서 들어오는 모든 요청에 적용된다.
+   2. 가장 상단 영역인 `main.ts`에 적용한다.
+
+### Build-in pipes
+1. ValidationPipe
+2. ParseIntPipe
+3. ParseBoolPipe
+4. ParseArrayPipe
+5. ParseUUIDPipe
+6. DefaultValuePipe
+
+필요한 경우 Custom pipe를 만들 수 있다.
+
+### 필요한 라이브러리
+```
+$ npm isntall class-validator class-transformer
+# 각각 유효성 체크, 자료형 변환에 사용된다.
+```
 
 ## Entity
 
