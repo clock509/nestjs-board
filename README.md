@@ -112,6 +112,8 @@ $ npm isntall class-validator class-transformer
 
 
 ## Repository
+- 강좌에서 사용하는 `@EntityRepository()`는 typeorm 0.3.x에서 deprecated 되었다.
+- 따라서 [이 블로그](https://velog.io/@wonjun1995/NestJS9.x.x-TypeORM0.3.x%EC%97%90%EC%84%9C-customRepository-%EC%89%BD%EA%B2%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)를 참조해서 Custom repository를 사용한다.
 
 
 ## Custom Decorator
