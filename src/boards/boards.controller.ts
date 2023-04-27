@@ -5,22 +5,37 @@ import {
   Get,
   NotFoundException,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   UsePipes,
-  ValidationPipe
+  ValidationPipe,
 } from '@nestjs/common';
 import { BoardsService } from './boards.service';
-import { BoardStatus } from "./boards-status.enum";
-import { CreateBoardDto } from "./dto/create-board.dto";
-import { BoardStatusValidationPipe } from "./pipes/board-status-validation.pipe";
+import { BoardStatus } from './boards-status.enum';
+import { CreateBoardDto } from './dto/create-board.dto';
+import { BoardStatusValidationPipe } from './pipes/board-status-validation.pipe';
+import { Board } from './boards.entity';
 
 @Controller('boards')
 export class BoardsController {
-  constructor(
-    private boardsService: BoardsService
-  ) {}
+  constructor(private boardsService: BoardsService) {}
 
+  @Get('/:id')
+  getBoardById(@Param('id') id: number): Promise<Board> {
+    return this.boardsService.getBoardById(id);
+  }
+
+  @Post()
+  @UsePipes(ValidationPipe)
+  createBoard(@Body() createBoardDto: CreateBoardDto): Promise<Board> {
+    return this.boardsService.createBoard(createBoardDto);
+  }
+
+  @Delete('/:id')
+  async deleteBoard(@Param('id', ParseIntPipe) id: number): Promise<void> {
+    return await this.boardsService.deleteBoard(id);
+  }
   // @Get('/')
   // getAllBoard(): Board[] {
   //   return this.boardsService.getAllBoards();

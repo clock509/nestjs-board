@@ -14,6 +14,10 @@
 - server: [Nest.js](https://docs.nestjs.com/)
 - database: MySQL(강의에서는 PostgreSQL을 사용하지만, 개인적으로 평소에 자주 사용했던 것으로 변경했습니다)
 - ORM: [TypeORM](https://typeorm.io/)
+  - 삭제 관련 기능: `remove()` VS `delete()`([공식 문서 참조하기](https://github.com/typeorm/typeorm/blob/master/docs/repository-api.md))
+    - `remove()`: 반드시 존재하는 데이터를 삭제할 때만 사용해야 한다. 존재하지 않는 데이터를 삭제하려 하면 `404 Error`가 발생한다.
+    - `delete()`: 데이터가 존재하면 지우고, 존재하지 않으면 아무런 영향이 없다.
+    - 즉, <b>성능의 관점</b>에서 `remove()`는 하나의 데이터를 지우기 위해 두 번 데이터베이스에 접근((1) 데이터 존재 여부 확인 -> (2) 삭제)해야 하므로, 성능이 중요하다면 한 번만 접근해도 되는 `delete()` 메서드를 권장한다. 
 
 # 주요한 NestJS 기능
 
